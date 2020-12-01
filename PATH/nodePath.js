@@ -21,8 +21,7 @@ console.log(info2)
 // 解析出请求目录 
 let str = "http://www.ruanyifeng.com/blog/2012/webBlog/random.html"
 // 解析出请求目录 
-
-let arrParse = str.split('/')
+let arrParse = str.split('/');
 console.log(arrParse);
  arr = arrParse.slice(arrParse.length-2,arrParse.length)
 console.log('28',arr)
@@ -39,7 +38,7 @@ fs.readFile(filePath,{encoding: 'utf-8'},function (err, data){
 
 // 获取当前执行文件的目录
 console.log('41',__dirname);
-
+// 解析 后缀名
 console.log(path.extname(__filename))  // .js
 
  // 解析路径， 可以将路径信息直接解析出来 ，解析出根路径， 目录  扩展名，文件名称

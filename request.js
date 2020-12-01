@@ -1,5 +1,6 @@
 let axios = require('axios');
 const { constants } = require('buffer');
+const { type } = require('os');
 //let httpUrl = 'https://www.dytt8.net/index.htm'
 let httpUrl1 = 'https://www.1905.com/vod/list/n_1_a_4/o3p1.html'
 
@@ -50,17 +51,26 @@ async function getMovies(url,moviesType) {
         var res, arrList = [];
 
         while (res = regMoveLink.exec(data.data)) {
-            //console.log('49');
             // 可以改为迭代器 提升性能
             arrList.push(res[1])
-            // console.log('49',res);
+          //  console.log('49',res[1]);
+            parsePage(res[1])
         }
-        console.log('分类：',moviesType);
-        console.log(arrList);
+       // console.log('分类：',moviesType);
+    //  console.log(arrList.toString());
+    //  parsePage(arrList.toString())
     //  console.log('我要拿到电影的链接',data)
    
 }
 async function parsePage(url){
     let page = await axios.get(url)
+    // for(var key in page){
+    //     console.log(key)
+    // }
+ //console.log(page,'12') <h1 class="playerBox-info-name playerBox-info-cnName">
+    let regt = /<h1 class="playerBox-info-name playerBox-info-cnName">(.*?)<\/h1>.*?class="playerBox-info-vodInfoItem">导演<a.*?target="_blank" title="(.*?)" data-hrefexp="fr=vodplay_ypzl_dy"> /igs
+    let res = regt.exec(page.data)
+    console.log(typeof(page.data))
+    console.log(res)
 }
 getClassifyUrl();
